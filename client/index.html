@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CONTROLLER</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #data-container {
+      margin-top: 20px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+    }
+
+    #square {
+      width: 100px;
+      height: 100px;
+      background-color: #d50a0a;
+      border: 2px solid #ccc;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CONTROLLER</h1>
+  <button id="turn-on-button">Turn on</button>
+  <button id="turn-off-button">Turn off</button>
+  <div id="square"></div>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
