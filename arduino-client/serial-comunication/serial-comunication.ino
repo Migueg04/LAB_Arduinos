@@ -1,49 +1,51 @@
-// Pines del LED y potenciómetro
-int LED1 = 10;
-int POTEN = A1;
+// ======== Pines ========
+int LED1 = 10;        // LED controlado desde el backend
+int POTEN = A1;       // Potenciómetro
+int buttonPin = 6;    // Botón físico
+int lightPin = A3;    // Fotocelda (LDR)
+
+// ======== Variables ========
 int potValue;
 int dimmer;
-
-// Pin del botón
-int buttonPin = 6;
 int buttonRead;
+int lightVal;
+int dt = 100;
 
 void setup() {
-  // Configuración del código original
+  Serial.begin(9600);
+
   pinMode(LED1, OUTPUT);
   pinMode(POTEN, INPUT);
-  
-  // Configuración del botón
   pinMode(buttonPin, INPUT);
-  
-  Serial.begin(9600);
+  pinMode(lightPin, INPUT);
 }
 
 void loop() {
-  // ========== LECTURA DEL POTENCIÓMETRO ==========
+  // ======== LECTURAS ========
   potValue = analogRead(POTEN);
   dimmer = map(potValue, 0, 1023, 0, 255);
-  
-  // ========== LECTURA DEL BOTÓN ==========
+
   buttonRead = digitalRead(buttonPin);
-  
-  // ========== ENVÍO DE DATOS AL SERIAL ==========
-  // Envía tanto el potenciómetro como el estado del botón en formato JSON
-  String jsonString = "{\"potValue\":" + String(dimmer) + 
-                      ",\"buttonState\":" + String(buttonRead) + "}";
+  lightVal = analogRead(lightPin);
+
+  // ======== ENVÍO DE DATOS ========
+  // Se envía un solo JSON con todos los valores
+  String jsonString = "{\"potValue\":" + String(dimmer) +
+                      ",\"buttonState\":" + String(buttonRead) +
+                      ",\"lightVal\":" + String(lightVal) + "}";
   Serial.println(jsonString);
-  
-  // ========== RECEPCIÓN DE COMANDOS DESDE SERIAL ==========
+
+  // ======== COMANDOS DESDE BACKEND ========
   if (Serial.available() > 0) {
     String message = Serial.readStringUntil('\n');
     message.trim();
-    
+
     if (message.equals("ON")) {
       digitalWrite(LED1, HIGH);
     } else if (message.equals("OFF")) {
       digitalWrite(LED1, LOW);
     }
   }
-  
-  delay(100);
+
+  delay(dt);
 }

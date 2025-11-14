@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,22 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-    }
-
-    #data-container {
-      margin-top: 20px;
-    }
-
-    .item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    img {
-      width: 30px;
-      height: 30px;
-      border-radius: 10px;
+      text-align: center;
     }
 
     #square {
@@ -31,13 +15,22 @@
       height: 100px;
       background-color: #d50a0a;
       border: 2px solid #ccc;
-      margin-top: 20px;
+      margin: 20px auto;
     }
 
     #button-status {
       margin-top: 20px;
       font-size: 18px;
       font-weight: bold;
+    }
+
+    #light-image {
+      width: 250px;
+      height: auto;
+      border-radius: 15px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transition: all 0.5s ease-in-out;
     }
   </style>
 </head>
@@ -49,8 +42,9 @@
   <div id="square"></div>
   <div id="button-status">Botón: NO PRESIONADO</div>
 
+  <img id="light-image" src="https://static.wikia.nocookie.net/uncanny/images/9/91/Dead_Incredible.png/revision/latest?cb=20220116013817" alt="Estado de luz" />
+
   <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
   <script src="index.js"></script>
 </body>
-
 </html>
